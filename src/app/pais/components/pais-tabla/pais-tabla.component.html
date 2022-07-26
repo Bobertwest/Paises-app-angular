@@ -1,0 +1,31 @@
+<table class="table table-hover" *ngIf="mostrarTabla">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Bandera</th>
+            <th>Nombre</th>
+            <th>Población</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pais of paises; let i = index" class="animate__animated animate__headShake">
+            <td>{{ i + 1 }}</td>
+            <td>
+                <img [src]="pais.flags.png" alt="bandera de {{ pais.name.common }}" class="small-flag" />
+            </td>
+            <td>
+                {{ pais.capital }}, {{ pais.alpha2Code ? pais.name : pais.name.common }}
+            </td>
+            <td>{{ pais.population | number }}</td>
+            <td *ngIf="pais.cca2; else regionOption">
+                <a [routerLink]="['/pais', pais.cca2]">Ver...</a>
+            </td>
+            <ng-template #regionOption>
+                <td>
+                    <a [routerLink]="['/pais', pais.alpha2Code]">Ver...</a>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+<h1>Por Capital</h1>
+<hr />
+<app-pais-input placeholder="Buscar Capital..." (onEnter)="buscar($event)" (onDebounce)="sugerencias($event)"></app-pais-input>
+<hr />
+<div class="alert alert-danger d-flex justify-content-center" *ngIf="noEncontrado">
+    No se encontró nada con el nombre {{ termino }}
+</div>
+
+<div class="alert alert-danger d-flex justify-content-center" *ngIf="huboError">
+    Hubo un error, intente mas tarde
+</div>
+
+<div *ngIf="loading">
+    <h3>Loading....</h3>
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-pais-tabla [paises]="capital" [mostrarTabla]="mostrarTabla"></app-pais-tabla>
+    </div>
+</div>
